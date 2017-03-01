@@ -24,11 +24,16 @@ class SentimentAnalysis
 	{
 		// TODO: DO SOME VALIDATION
 		$text_list = array($text);
-		$ml = self::getMonkeyLearn();
-		$response = $ml->classifiers->classify(self::MONKEY_LEARN_MODULE, $text_list, true);
 
-		$result = $response->result[0][0];
-
+		$cache_key = md5($text);
+		$result = TempCache::get($cache_key);
+		if (is_null($result))
+		{
+			$ml = self::getMonkeyLearn();
+			$response = $ml->classifiers->classify(self::MONKEY_LEARN_MODULE, $text_list, true);
+			$result = $response->result[0][0];
+			TempCache::put($cache_key, $result, 3600 * 24);
+		}
 		$label = $result['label'];
 		switch ($label)
 		{
