@@ -7,7 +7,7 @@
 <body>
 <div class="splash">
 	<h1>Student Response Club</h1>
-	<h3>Coming Soon...</h3>
+	<h3>Currently in Development...</h3>
 </div>
 </body>
 </html>
