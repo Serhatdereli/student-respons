@@ -2,7 +2,7 @@
 
 class SentimentAnalysis
 {
-	const MONKEY_LEARN_API_KEY = 'b709e2c173ee597480c300c43259660d98960ac1';
+	const MONKEY_LEARN_API_KEY = 'c12683a266a33b60297c619488b6d8b594cf2d42';
 	const MONKEY_LEARN_MODULE = 'cl_qkjxv9Ly';
 
 	const SENTIMENT_POSITIVE = 1;
