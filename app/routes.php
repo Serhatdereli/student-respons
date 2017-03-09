@@ -8,4 +8,6 @@ $router = new AltoRouter();
 
 $router->map('GET', '/', 'handleIndexPage', 'index');
 
+$router->map('GET', '/login', 'handleLoginPage', 'login');
+
 handleRouting($router);

@@ -2,7 +2,6 @@
 
 {block name=body}
 <div class="splash">
-	<h1>Student Response Club</h1>
-	<h3>Currently in Development...</h3>
+	LOGIN
 </div>
 {/block}

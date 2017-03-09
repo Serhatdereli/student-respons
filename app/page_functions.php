@@ -6,6 +6,13 @@ function handleIndexPage()
 	$tpl->display();
 }
 
+function handleLoginPage()
+{
+	$tpl = Template::create('pages/login.tpl');
+	$tpl->display();
+}
+
+
 /** 404 Page **/
 function handle404Page()
 {
