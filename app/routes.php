@@ -10,4 +10,6 @@ $router->map('GET', '/', 'handleIndexPage', 'index');
 
 $router->map('GET', '/login', 'handleLoginPage', 'login');
 
+$router->map('GET', '/feedback/[:session_id]', 'handleFeedbackPage', 'feedback');
+
 handleRouting($router);

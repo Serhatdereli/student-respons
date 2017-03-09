@@ -2,7 +2,6 @@
 
 class User
 {
-
 	private $id;
 	private $email;
 	private $registered_on;

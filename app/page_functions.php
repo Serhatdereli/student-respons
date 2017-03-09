@@ -12,6 +12,13 @@ function handleLoginPage()
 	$tpl->display();
 }
 
+function handleFeedbackPage($session_id)
+{
+	$tpl = Template::create('pages/feedback.tpl');
+	$tpl->assign('session_id', $session_id);
+	$tpl->display();
+}
+
 
 /** 404 Page **/
 function handle404Page()
