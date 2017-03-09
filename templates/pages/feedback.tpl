@@ -1,9 +1,16 @@
 {extends file="include/master.tpl"}
 
 {block name=body}
-<form action="/api/feedback.php" method="post">
-	<input type="hidden" value="{$session_id}" name="session-id" />
-	<textarea name="feedback-message"></textarea>
-	<button type="submit">Submit</button>
-</form>
+<div class="container feedback-page">
+	<form action="/api/feedback.php" method="post">
+	<h4>Leave Feedback for the class:</h4>
+		<input type="hidden" value="{$session_id}" name="session-id" />
+		<div class="form-group">
+			<label for="feedback-msg">Your message:</label>
+			<textarea class="form-control" name="feedback-message" id="feedback-msg"></textarea>
+		</div>
+
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</div>
 {/block}
