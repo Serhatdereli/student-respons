@@ -8,6 +8,20 @@ class User
 	private $registered_on;
 	private $profile = null;
 
+	public function getID()
+	{
+		return $this->id;
+	}
+
+	public function getProfile()
+	{
+		if (is_null($this->profile))
+		{
+			$this->profile = UserProfile::getByUser($this);
+		}
+		return $this->profile;
+	}
+
 	public static function login($username, $password)
 	{
 		// TODO
@@ -27,6 +41,5 @@ class User
 	{
 		$db = Database::get();
 		$sql = "INSERT INTO sr_user (email, hash_pass) VALUES (?, ?)";
-		// Create profile
 	}
 }
