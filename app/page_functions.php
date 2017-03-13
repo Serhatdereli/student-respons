@@ -23,9 +23,13 @@ function handleFeedbackSessionPage($session_id)
 	$error_message = Request::getSessionVariable('feedback_error_message');
 	Request::deleteSessionVariable('feedback_error_message');
 
+	$feedback_temp_message = Request::getSessionVariable('feedback_temp_message');
+	Request::deleteSessionVariable('feedback_temp_message');
+
 	$tpl = Template::create('pages/feedback.tpl');
 	$tpl->assign('session_id', $session_id);
 	$tpl->assign('error_message', $error_message);
+	$tpl->assign('feedback_temp_message', $feedback_temp_message);
 	$tpl->display();
 }
 

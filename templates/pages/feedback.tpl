@@ -7,7 +7,7 @@
 		<input type="hidden" value="{$session_id}" name="session-id" />
 		<div class="form-group">
 			<label for="feedback-msg">Your message:</label>
-			<textarea class="form-control" name="feedback-message" id="feedback-msg"></textarea>
+			<textarea class="form-control" name="feedback-message" id="feedback-msg">{if $feedback_temp_message}{$feedback_temp_message}{/if}</textarea>
 		</div>
 
 		{if $error_message}

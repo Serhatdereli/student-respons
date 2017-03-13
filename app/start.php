@@ -20,3 +20,6 @@ spl_autoload_register(function ($class_name)
 {
 	include $_SERVER['DOCUMENT_ROOT'] . '../../classes/' . $class_name . '.php';
 });
+
+// Load functions file
+require $_SERVER['DOCUMENT_ROOT'] . '../../app/functions.php';
