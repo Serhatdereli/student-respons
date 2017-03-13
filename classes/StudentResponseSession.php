@@ -27,6 +27,14 @@ class StudentResponseSession
 		$st->execute(array($user->getID(), $expires_at, $description));
 	}
 
+	public static function isValidSessionID($session_id)
+	{
+		// check if exists
+		// check if not expired
+		// returns true or false
+		return false;
+	}
+
 	public function getResponses()
 	{
 		return StudentResponseResponse::getAllBySession($this);

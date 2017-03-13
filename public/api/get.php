@@ -2,11 +2,24 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../app/start.php';
 
-$test_text = 'I did not understand the topic today.';
+$email = 'serhat@student-response.club';
+$password = 'serhatsux1234';
 
-$result = SentimentAnalysis::analyseText($test_text);
+try
+{
+	User::register($email, $password);
+}
+catch (Exception $ex) {}
 
+$try_pass = 'serhatsux1234';
 
-echo '<h1>This text got result of: ' . $result .  ' </h1>';
+if (User::login($email, $try_pass))
+{
+	echo 'LOGGEDIN!';
+}
+else
+{
+	echo 'FAILED TO LOGIN';
+}
 
 exit;

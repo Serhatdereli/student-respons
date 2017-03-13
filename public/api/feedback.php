@@ -12,8 +12,11 @@ if ($_POST)
 	{
 		displayFeedbackError('');
 	}
-	// 2. Check if session ID exists
-	// 3. Check if session is not expired StudentResponseSession::isValidSessionID($session_id) [step 2 and 3]
+	// 2. Check if session is valid
+	if (!StudentResponseSession::isValidSessionID($session_id))
+	{
+		displayFeedbackError('The provided session ID is no longer valid.', $session_id);
+	}
 	$session_OK = true;
 
 	$feedback_message = Request::getPostVariable('feedback-message');
