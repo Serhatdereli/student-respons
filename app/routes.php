@@ -6,10 +6,12 @@ $router = new AltoRouter();
 
 // map($method, $route, $target, $name = null)
 
-$router->map('GET', '/', 'handleIndexPage', 'index');
+$router->map('GET', '/', 'handleIndexPage');
 
-$router->map('GET', '/login', 'handleLoginPage', 'login');
+$router->map('GET', '/login', 'handleLoginPage');
 
-$router->map('GET', '/feedback/[:session_id]', 'handleFeedbackPage', 'feedback');
+// Feedback pages
+$router->map('GET', '/feedback', 'handleFeedbackPage');
+$router->map('GET', '/feedback/[:session_id]', 'handleFeedbackSessionPage');
 
 handleRouting($router);

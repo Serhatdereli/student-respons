@@ -12,10 +12,20 @@ function handleLoginPage()
 	$tpl->display();
 }
 
-function handleFeedbackPage($session_id)
+// Feedback pages
+function handleFeedbackPage()
 {
+	echo 'Please enter a valid session ID.';
+	exit;
+}
+function handleFeedbackSessionPage($session_id)
+{
+	$error_message = Request::getSessionVariable('feedback_error_message');
+	Request::deleteSessionVariable('feedback_error_message');
+
 	$tpl = Template::create('pages/feedback.tpl');
 	$tpl->assign('session_id', $session_id);
+	$tpl->assign('error_message', $error_message);
 	$tpl->display();
 }
 
