@@ -38,7 +38,11 @@ if ($_POST)
 
 if ($session_OK && $feedback_OK)
 {
-	echo 'OK TO SUBMIT'; exit;
+	if (StudentResponseResponse::submitNew($session_id, $feedback_message))
+	{
+		echo "Submitted"; exit;
+	}
+
 	// === SUBMIT THE RESPONSE
 	// 1. StudentResponseResponse::submitNew($session_id, $feedback_message)
 	// 2. Done - Send to confirmation page

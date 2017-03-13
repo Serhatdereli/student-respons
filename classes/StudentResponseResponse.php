@@ -22,4 +22,18 @@ class StudentResponseResponse
 		}
 		return $responses;
 	}
+
+	public static function submitNew($session_id, $feedback_message) 
+	{
+		$session = StudentResponseSession::getByID($session_id);
+		if (is_null($session))
+		{
+			throw new Exception('SESSION_NO_EXISTS');
+		}
+		$sentiment = SentimentAnalysis::analyseText($feedback_message);
+		$db = Database::get();
+		$sql = "INSERT INTO sr_response (created_at, feedback, sentiment, session_id) VALUES (NOW(),?,?,?)";
+		$st = $db->prepare($sql);
+		return $st->execute(array($feedback_message, $sentiment, $session_id));
+	}
 }
