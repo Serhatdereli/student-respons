@@ -32,6 +32,11 @@ function handleFeedbackSessionPage($session_id)
 	$tpl->assign('feedback_temp_message', $feedback_temp_message);
 	$tpl->display();
 }
+function handleFeedbackConfirmationPage()
+{
+	$tpl = Template::create('pages/feedback-confirmation.tpl');
+	$tpl->display();
+}
 
 
 /** 404 Page **/

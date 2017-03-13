@@ -40,12 +40,9 @@ if ($session_OK && $feedback_OK)
 {
 	if (StudentResponseResponse::submitNew($session_id, $feedback_message))
 	{
-		echo "Submitted"; exit;
+		// Success - send to confirmation
+		Request::redirect('/confirmation');
 	}
-
-	// === SUBMIT THE RESPONSE
-	// 1. StudentResponseResponse::submitNew($session_id, $feedback_message)
-	// 2. Done - Send to confirmation page
 }
 
 displayFeedbackError('An unknown error occured, please contact the web admin.', $session_id);

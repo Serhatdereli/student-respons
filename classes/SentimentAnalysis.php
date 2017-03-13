@@ -5,9 +5,9 @@ class SentimentAnalysis
 	const MONKEY_LEARN_API_KEY = 'c12683a266a33b60297c619488b6d8b594cf2d42';
 	const MONKEY_LEARN_MODULE = 'cl_qkjxv9Ly';
 
-	const SENTIMENT_POSITIVE = 1;
-	const SENTIMENT_NEGATIVE = 2;
-	const SENTIMENT_NEUTRAL = 0;
+	const SENTIMENT_POSITIVE = 1; // :)
+	const SENTIMENT_NEGATIVE = 2; // :(
+	const SENTIMENT_NEUTRAL = 0; // :|
 
 	public static $monkey_learn = null;
 
