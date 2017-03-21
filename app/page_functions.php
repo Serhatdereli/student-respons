@@ -3,6 +3,11 @@
 function handleIndexPage()
 {
 	$user = Request::getUser();
+	if (!is_a($user, 'User'))
+	{
+		Request::redirect('/login');
+		exit;
+	}
 
 	$user_sessions = $user->getSessions();
 
