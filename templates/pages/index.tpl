@@ -24,15 +24,19 @@
 						<th>Created At</th>
 						<th>Expires At</th>
 						<th>Description</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1234</td>
-						<td>urmum</td>
-						<td>urdad</td>
-						<td>triggered</td>
+				{foreach $sessions as $session}
+					<tr class="{$session['tr_css_classs']}">
+						<td>{$session['id']}</td>
+						<td>{$session['created_at']}</td>
+						<td>{$session['expires_at']}</td>
+						<td>{$session['description']}</td>
+						<td><a href="{$session['feedback_link']}" class="btn btn-default" target="_blank"><i class="fa fa-share"></i></a></td>
 					</tr>
+				{/foreach}
 				</tbody>
 			</table>
 		</div>

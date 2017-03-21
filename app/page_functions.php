@@ -4,7 +4,23 @@ function handleIndexPage()
 {
 	$user = Request::getUser();
 
+	$user_sessions = $user->getSessions();
+
+	$sessions_array = array();
+	foreach ($user_sessions as $session)
+	{
+		$cur_session = array();
+		$cur_session['id'] = $session->getID();
+		$cur_session['created_at'] = $session->getCreatedAt();
+		$cur_session['expires_at'] = $session->getExpiresAt();
+		$cur_session['description'] = $session->getDescription();
+		$cur_session['tr_css_classs'] = ($session->isExpired()) ? 'danger' : 'success';
+		$cur_session['feedback_link'] = $session->getFeedbackLink();
+		$sessions_array[] = $cur_session;
+	}
+
 	$tpl = Template::create('pages/index.tpl');
+	$tpl->assign('sessions', $sessions_array);
 	$tpl->display();
 }
 
@@ -33,6 +49,10 @@ function handleFeedbackPage()
 }
 function handleFeedbackSessionPage($session_id)
 {
+	// Decode session ID
+	$session_id = base64_decode($session_id);
+	$session_id = explode('__', $session_id)[0];
+
 	$error_message = Request::getSessionVariable('feedback_error_message');
 	Request::deleteSessionVariable('feedback_error_message');
 

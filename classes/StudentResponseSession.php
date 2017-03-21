@@ -9,6 +9,26 @@ class StudentResponseSession
 	private $description;
 	private $responses = array();
 
+	public function getID()
+	{
+		return $this->id;
+	}
+
+	public function getCreatedAt()
+	{
+		return $this->created_at;
+	}
+
+	public function getExpiresAt()
+	{
+		return $this->expires_at;
+	}
+
+	public function getDescription()
+	{
+		return $this->description;
+	}
+
 	public function isExpired()
 	{
 		$now = time();
@@ -16,9 +36,29 @@ class StudentResponseSession
 		return ($now > $expires_ts);
 	}
 
+	public function getFeedbackLink()
+	{
+		return '/feedback/' . base64_encode($this->getID() . '__' . $this->getCreatedAt());
+	}
+
 	public static function getAllByUser(User $user)
 	{
-		// TODO
+		$db = Database::get();
+		$sql = "SELECT * FROM sr_session WHERE user_id=? ORDER BY created_at DESC";
+		$st = $db->prepare($sql);
+		$sessions = array();
+		if ($st->execute(array($user->getID())))
+		{
+			if ($st->rowCount() > 0)
+			{
+				while ($row = $st->fetch(PDO::FETCH_ASSOC))
+				{
+					$session = self::buildByRow($row);
+					$sessions[] = $session;
+				}
+			}
+		}
+		return $sessions;
 	}
 
 	public static function buildByRow($row)
