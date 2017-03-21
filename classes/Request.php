@@ -2,6 +2,17 @@
 
 class Request
 {
+	// Get User from the request
+	public static function getUser()
+	{
+		global $USER;
+		if (is_a($USER, 'User'))
+		{
+			return $USER;
+		}
+		return null;
+	}
+
 	/* POST */
 	public static function getPostVariable($key)
 	{

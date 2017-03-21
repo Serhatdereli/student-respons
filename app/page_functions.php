@@ -2,6 +2,8 @@
 
 function handleIndexPage()
 {
+	$user = Request::getUser();
+
 	$tpl = Template::create('pages/index.tpl');
 	$tpl->display();
 }
@@ -60,7 +62,7 @@ function handle404Page()
 
 /** Handle Routing **/
 function handleRouting(AltoRouter $router)
-{	
+{
 	$match = $router->match();
 	if ($match && is_callable($match['target']))
 	{

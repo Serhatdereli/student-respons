@@ -30,5 +30,3 @@ if (User::isLoggedIn())
 {
 	$USER = User::getByID(Request::getSessionVariable(User::SESSION_VARIABLE));
 }
-
-var_dump($USER);
