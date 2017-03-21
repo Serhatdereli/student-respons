@@ -53,7 +53,6 @@
 	<script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/js/bs-animation.js"></script>
-    <script src="/assets/js/Pricing-Table-Item.js"></script>
-    <script src="/assets/js/Pricing-Table-Item1.js"></script>
+    <script src="/assets/js/scripts.js"></script>
 </body>
 </html>

@@ -42,7 +42,7 @@ if ($_GET)
 				$response['message'] = 'You can not create new sessions expiring in the past: ' . $expiry;
 				showResponse($response);
 			}
-			$expiry = gmdate('Y-m-d H:i:s');
+			$expiry = gmdate('Y-m-d H:i:s', $expiry);
 			// Description
 			$description = Request::getGetVariable('desc');
 			// TODO: Validate description
