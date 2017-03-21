@@ -9,6 +9,7 @@ $router = new AltoRouter();
 $router->map('GET', '/', 'handleIndexPage');
 
 $router->map('GET', '/login', 'handleLoginPage');
+$router->map('GET', '/logout', 'handleLogout');
 
 // Feedback pages
 $router->map('GET', '/feedback', 'handleFeedbackPage');

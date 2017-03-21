@@ -6,6 +6,7 @@ class User
 	private $email;
 	private $registered_on;
 	private $profile = null;
+	private $sessions = null;
 
 	public function getID()
 	{
@@ -21,6 +22,15 @@ class User
 		return $this->profile;
 	}
 
+	public function getSessions()
+	{
+		if (is_null($this->sessions))
+		{
+			$this->sessions = StudentResponseSession::getAllByUser($this);
+		}
+		return $this->sessions;
+	}
+
 	public static function buildByRow($row)
 	{
 		$user = new self();
@@ -30,6 +40,7 @@ class User
 		return $user;
 	}
 
+	const SESSION_VARIABLE = 'USER_LOGGEDIN';
 	public static function login($email, $password)
 	{
 		if (!self::emailExists($email))
@@ -39,10 +50,17 @@ class User
 		$db_hash = self::get_hash_for_email($email);
 		if (self::verify_hash($password, $db_hash))
 		{
+			$USER = self::getByEmail($email);
 			// Successful login
+			Request::setSessionVariable(self::SESSION_VARIABLE, $USER->getID());
 			return true;
 		}
 		return false;
+	}
+
+	public static function isLoggedIn()
+	{
+		return (Request::getSessionVariable(self::SESSION_VARIABLE) !== null);
 	}
 
 	private static function get_hash_for_email($email)

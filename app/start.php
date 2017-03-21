@@ -23,3 +23,12 @@ spl_autoload_register(function ($class_name)
 
 // Load functions file
 require $_SERVER['DOCUMENT_ROOT'] . '../../app/functions.php';
+
+// User logged in
+$USER = null;
+if (User::isLoggedIn())
+{
+	$USER = User::getByID(Request::getSessionVariable(User::SESSION_VARIABLE));
+}
+
+var_dump($USER);

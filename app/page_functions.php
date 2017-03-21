@@ -8,8 +8,19 @@ function handleIndexPage()
 
 function handleLoginPage()
 {
+	if (User::isLoggedIn())
+	{
+		Request::redirect('/');
+		exit;
+	}
 	$tpl = Template::create('pages/login.tpl');
 	$tpl->display();
+}
+
+function handleLogout()
+{
+	Request::redirect('/api/auth.php?logout=1');
+	exit;
 }
 
 // Feedback pages

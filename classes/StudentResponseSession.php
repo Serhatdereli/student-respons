@@ -16,6 +16,11 @@ class StudentResponseSession
 		return ($now > $expires_ts);
 	}
 
+	public static function getAllByUser(User $user)
+	{
+		// TODO
+	}
+
 	public static function buildByRow($row)
 	{
 		$session = new self();
