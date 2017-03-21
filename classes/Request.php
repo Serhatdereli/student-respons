@@ -13,6 +13,20 @@ class Request
 		return null;
 	}
 
+	/* GET */
+	public static function getGetVariable($key)
+	{
+		if (isset($_GET[$key]))
+		{
+			return $_GET[$key];
+		}
+		return null;
+	}
+	public static function setGetVariable($key, $value)
+	{
+		$_GET[$key] = $value;
+	}
+
 	/* POST */
 	public static function getPostVariable($key)
 	{

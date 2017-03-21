@@ -13,6 +13,11 @@ class User
 		return $this->id;
 	}
 
+	public function getEmail()
+	{
+		return $this->email;
+	}
+
 	public function getProfile()
 	{
 		if (is_null($this->profile))
