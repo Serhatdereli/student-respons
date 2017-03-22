@@ -41,4 +41,38 @@ $(document).ready(function()
 			}
 		}
 	});
+
+
+	// Handle sentiment bar
+	var sentimentBars = $('.sentiment-bar');
+	for (var i = 0; i < sentimentBars.length; i++)
+	{
+		var sentimentBar = $(sentimentBars[i]);
+		var width = sentimentBar.width();
+		var happyPC = parseFloat(sentimentBar.data('happypc'));
+		var progressBar = $(sentimentBar.find('.sentiment-bar-progress'));
+		var sentimentDot = $(sentimentBar.find('.sentiment-bar-dot'));
+		var barWidth = progressBar.width();
+		var dotWidth = sentimentDot.width();
+		// work out margin
+		var marginLeft = 0;
+		if (happyPC > dotWidth)
+		{
+			marginLeft = happyPC * barWidth / 100;
+			marginLeft -= (dotWidth / 2);
+		}
+		sentimentDot.css('margin-left', marginLeft);
+		if (happyPC > 50)
+		{
+			sentimentDot.css('background-color', 'green');
+		}
+		else if (happyPC == 50)
+		{
+			sentimentDot.css('background-color', 'yellow');
+		}
+		else if (happyPC < 50)
+		{
+			sentimentDot.css('background-color', 'red');
+		}
+	}
 });

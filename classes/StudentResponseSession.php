@@ -123,15 +123,19 @@ class StudentResponseSession
 		if (count($responses) > 0)
 		{
 			$max = count($responses);
-			$positives = 0;
+			$positiveness = 0;
 			foreach ($responses as $response)
 			{
 				if ($response->getSentiment() == SentimentAnalysis::SENTIMENT_POSITIVE)
 				{
-					$positives++;
+					$positiveness += 1;
+				}
+				else if ($response->getSentiment() == SentimentAnalysis::SENTIMENT_NEUTRAL)
+				{
+					$positiveness += 0.25;
 				}
 			}
-			$happy_pc = ($positives * 100) / $max;
+			$happy_pc = ($positiveness * 100) / $max;
 		}
 		return $happy_pc;
 	}

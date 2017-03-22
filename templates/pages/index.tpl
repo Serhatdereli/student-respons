@@ -14,6 +14,7 @@
 				<thead>
 					<tr>
 						<th>Description</th>
+						<th>Feedback</th>
 						<th>Responses</th>
 						<th>Created On</th>
 						<th>Expires On</th>
@@ -22,9 +23,18 @@
 				</thead>
 				<tbody>
 					{foreach $sessions as $session}
-					<tr class="{$session['tr_css_classs']}" title="#{$session['id']}">
-						<td>{$session['description']}</td>
-						<td>{count($session['responses'])} ({$session['happy_pc']}%)</td>
+					<tr class="{$session['tr_css_classs']}">
+						<td title="#{$session['id']}">{$session['description']}</td>
+						<td title="{$session['happy_pc']}%">
+							<div class="sentiment-bar" data-happypc="{$session['happy_pc']}">
+								<i class="fa fa-frown-o" style="color:red;"></i>
+								<div class="sentiment-bar-progress">
+									<span class="sentiment-bar-dot"></span>
+								</div>
+								<i class="fa fa-smile-o" style="color:green"></i>
+							</div>
+						</td>
+						<td>{count($session['responses'])}</td>
 						<td>{$session['created_at']}</td>
 						<td>{$session['expires_at']}</td>
 						<td><a href="{$session['feedback_link']}" class="btn btn-sm btn-default" target="_blank"><i class="fa fa-share-alt"></i></a></td>
