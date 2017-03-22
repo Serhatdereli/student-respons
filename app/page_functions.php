@@ -16,11 +16,23 @@ function handleIndexPage()
 	{
 		$cur_session = array();
 		$cur_session['id'] = $session->getID();
-		$cur_session['created_at'] = $session->getCreatedAt();
-		$cur_session['expires_at'] = $session->getExpiresAt();
+		$cur_session['created_at'] = formatDate($session->getCreatedAt(), 'd/m/Y - H:i');
+		$cur_session['expires_at'] = formatDate($session->getExpiresAt(), 'd/m/Y - H:i');
 		$cur_session['description'] = $session->getDescription();
 		$cur_session['tr_css_classs'] = ($session->isExpired()) ? 'danger' : 'success';
 		$cur_session['feedback_link'] = $session->getFeedbackLink();
+		$cur_session['happy_pc'] = number_format($session->getHappinessPercentage(), 2);
+		$cur_session['responses'] = array();
+		foreach ($session->getResponses() as $response)
+		{
+			$cur_response = array();
+			$cur_response['id'] = $response->getID();
+			$cur_response['session_id'] = $response->getSessionID();
+			$cur_response['created_at'] = $response->getCreatedAt();
+			$cur_response['feedback'] = $response->getFeedback();
+			$cur_response['sentiment'] = $response->getSentiment();
+			$cur_session['responses'][] = $cur_response;
+		}
 		$sessions_array[] = $cur_session;
 	}
 

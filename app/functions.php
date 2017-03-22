@@ -19,3 +19,9 @@ function cleanVariable($variable)
 	$variable = strip_tags($variable);
 	return $variable;
 }
+
+function formatDate($date_str, $format)
+{
+	$timestamp = strtotime($date_str);
+	return gmdate($format, $timestamp);
+}

@@ -7,7 +7,7 @@ class StudentResponseSession
 	private $created_at;
 	private $expires_at;
 	private $description;
-	private $responses = array();
+	private $responses = null;
 
 	public function getID()
 	{
@@ -109,6 +109,30 @@ class StudentResponseSession
 
 	public function getResponses()
 	{
-		return StudentResponseResponse::getAllBySession($this);
+		if (is_null($this->responses))
+		{
+			$this->responses = StudentResponseResponse::getAllBySession($this);
+		}
+		return $this->responses;
+	}
+
+	public function getHappinessPercentage()
+	{
+		$happy_pc = 0;
+		$responses = $this->getResponses();
+		if (count($responses) > 0)
+		{
+			$max = count($responses);
+			$positives = 0;
+			foreach ($responses as $response)
+			{
+				if ($response->getSentiment() == SentimentAnalysis::SENTIMENT_POSITIVE)
+				{
+					$positives++;
+				}
+			}
+			$happy_pc = ($positives * 100) / $max;
+		}
+		return $happy_pc;
 	}
 }

@@ -8,19 +8,60 @@ class StudentResponseResponse
 	private $feedback;
 	private $sentiment;
 
+	public function getID()
+	{
+		return $this->id;
+	}
+
+	public function getSessionID()
+	{
+		return $this->session_id;
+	}
+
+	public function getCreatedAt()
+	{
+		return $this->created_at;
+	}
+
+	public function getFeedback()
+	{
+		return $this->feedback;
+	}
+
+	public function getSentiment()
+	{
+		return $this->sentiment;
+	}
+
 	public static function getAllBySession(StudentResponseSession $session)
 	{
 		$db = Database::get();
 		$sql = "SELECT * FROM sr_response WHERE session_id=?";
 		$st = $db->prepare($sql);
-		$st->execute($session->getID());
 		$responses = array();
-		while ($res = $st->fetch())
+		if ($st->execute(array($session->getID())))
 		{
-			// Build object from row
-			// Add to responses array
+			if ($st->rowCount() > 0)
+			{
+				while ($row = $st->fetch(PDO::FETCH_ASSOC))
+				{
+					$response = self::buildByRow($row);
+					$responses[] = $response;
+				}
+			}
 		}
 		return $responses;
+	}
+
+	public static function buildByRow($row)
+	{
+		$session = new self();
+		$session->id = $row['response_id'];
+		$session->session_id = $row['session_id'];
+		$session->created_at = $row['created_at'];
+		$session->feedback = $row['feedback'];
+		$session->sentiment = $row['sentiment'];
+		return $session;
 	}
 
 	public static function submitNew($session_id, $feedback_message) 
