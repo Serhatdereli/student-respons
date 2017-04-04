@@ -11,9 +11,12 @@ $router->map('GET', '/', 'handleIndexPage');
 $router->map('GET', '/login', 'handleLoginPage');
 $router->map('GET', '/logout', 'handleLogout');
 
+$router->map('GET', '/stats/[:session_id]', 'handleStatsPage');
+
 // Feedback pages
 $router->map('GET', '/feedback', 'handleFeedbackPage');
 $router->map('GET', '/feedback/[:session_id]', 'handleFeedbackSessionPage');
 $router->map('GET', '/confirmation', 'handleFeedbackConfirmationPage');
+
 
 handleRouting($router);

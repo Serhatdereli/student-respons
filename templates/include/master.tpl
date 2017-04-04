@@ -3,18 +3,15 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
 	<title>Student Response Club</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-	<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="/assets/css/MUSA_no-more-tables.css">
-    <link rel="stylesheet" href="/assets/css/MUSA_no-more-tables1.css">
-    <link rel="stylesheet" href="/assets/css/MUSA_panel-table.css">
-    <link rel="stylesheet" href="/assets/css/MUSA_panel-table1.css">
     <link rel="stylesheet" href="/assets/css/Navigation-with-Button1.css">
     <link rel="stylesheet" href="https://daneden.github.io/animate.css/animate.min.css">
     <link rel="stylesheet" href="/assets/css/Pretty-Registration-Form.css">
@@ -48,11 +45,11 @@
 			</div>
 		</div>
 	</nav>
-
+	<script src="/assets/js/jquery.min.js" type="text/javascript"></script>
+	<script src="/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="/assets/js/bs-animation.js" type="text/javascript"></script>
+	<script src="/assets/js/scripts.js" type="text/javascript"></script>
+	{block name=js}{/block}
 	{block name=body}{/block}
-	<script src="/assets/js/jquery.min.js"></script>
-    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/assets/js/bs-animation.js"></script>
-    <script src="/assets/js/scripts.js"></script>
 </body>
 </html>

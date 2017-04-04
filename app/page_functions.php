@@ -19,7 +19,7 @@ function handleIndexPage()
 		$cur_session['created_at'] = formatDate($session->getCreatedAt(), 'd/m/Y - H:i');
 		$cur_session['expires_at'] = formatDate($session->getExpiresAt(), 'd/m/Y - H:i');
 		$cur_session['description'] = $session->getDescription();
-		$cur_session['tr_css_classs'] = ($session->isExpired()) ? 'danger' : 'success';
+		$cur_session['tr_css_classs'] = ($session->isExpired()) ? 'expired-session' : 'active-session';
 		$cur_session['feedback_link'] = $session->getFeedbackLink();
 		$cur_session['happy_pc'] = number_format($session->getHappinessPercentage(), 2);
 		$cur_session['responses'] = array();
@@ -56,6 +56,47 @@ function handleLogout()
 {
 	Request::redirect('/api/auth.php?logout=1');
 	exit;
+}
+
+// Stats pages
+function handleStatsPage($session_id)
+{
+	// Does the user own the session id
+	// if so display
+	// if not redirect back to homepage
+	$session = StudentResponseSession::getByID($session_id);
+	$responses = $session->getResponses();
+	$positive_num = $negative_num = $neutral_num = 0;
+	$responses_array = array();
+	foreach ($responses as $response)
+	{
+		$cur_response = array();
+		$cur_response['created_at'] = formatDate($response->getCreatedAt(), 'd/m/Y - H:i');
+		$cur_response['feedback'] = $response->getFeedback();
+		switch ($response->getSentiment())
+		{
+			case SentimentAnalysis::SENTIMENT_POSITIVE:
+				$cur_response['sentiment'] = 'Positive';
+				$positive_num++;
+				break;
+			case SentimentAnalysis::SENTIMENT_NEGATIVE;
+				$cur_response['sentiment'] = 'Negative';
+				$negative_num++;
+				break;
+			case SentimentAnalysis::SENTIMENT_NEUTRAL;
+				$cur_response['sentiment'] = 'Neutral';
+				$neutral_num++;
+				break;
+		}
+		$responses_array[] = $cur_response;
+	}
+	$tpl = Template::create('pages/stats.tpl');
+	$tpl->assign('session_desc', $session->getDescription());
+	$tpl->assign('positive_num', $positive_num);
+	$tpl->assign('negative_num', $negative_num);
+	$tpl->assign('neutral_num', $neutral_num);
+	$tpl->assign('responses', $responses_array);
+	$tpl->display();
 }
 
 // Feedback pages
